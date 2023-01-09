@@ -26,13 +26,12 @@ while len(guessed_corr) < 64:
     if answer_district == "Exit":  # secret code to exit the game
         districts_to_learn = list(set(all_districts) - set(guessed_corr))
         new_data = pd.DataFrame(districts_to_learn)
-        new_data.to_csv(
-            "districts_to_learn.csv"
-        )  # creates a new csv file with the names of all the districts needed to learn
+        new_data.to_csv("districts_to_learn.csv")
+        #creates a new csv file with the names of all the districts needed to learn
 
         break
 
-    if answer_district in all_districts:  # correctly guessed
+    if answer_district in all_districts:  # correctly guessed the district
 
         guessed_corr.append(answer_district)
         t = turtle.Turtle()
@@ -40,7 +39,7 @@ while len(guessed_corr) < 64:
         t.penup()
         state_data = df[df["district"] == answer_district]
         t.goto(int(state_data.x), int(state_data.y))
-        t.write(state_data.district.item())
+        t.write(state_data["district"].item())
 
 
 screen.exitonclick()
